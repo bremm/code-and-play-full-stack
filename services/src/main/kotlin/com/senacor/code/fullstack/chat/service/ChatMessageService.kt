@@ -1,7 +1,9 @@
 package com.senacor.code.fullstack.chat.service
 
 import com.senacor.code.fullstack.chat.domain.ChatMessage
+import org.springframework.stereotype.Service
 
+@Service
 class ChatMessageService {
 
     companion object {
