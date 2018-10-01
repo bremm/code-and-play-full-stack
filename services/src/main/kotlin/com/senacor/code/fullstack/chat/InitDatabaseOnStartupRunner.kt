@@ -32,9 +32,9 @@ class InitDatabaseOnStartupRunner : CommandLineRunner {
         }
 
         // create some messages
-        chatMessageRepository.save(ChatMessage("general", "sender@test.de", "Hello"))
-        chatMessageRepository.save(ChatMessage("general", "sender@test.de", "World!"))
-        chatMessageRepository.save(ChatMessage("dev", "sender@test.de", "Did you ever tried Spring Boot 2.0.0?"))
+        chatMessageRepository.save(ChatMessage("dev", "sender@test.de", "Hello"))
+        chatMessageRepository.save(ChatMessage("dev", "sender@test.de", "World!"))
+        chatMessageRepository.save(ChatMessage("general", "sender@test.de", "Did you ever tried Spring Boot 2.0.0?"))
 
         // fetch all channels
         LOGGER.info("ChatMessages in Mongo DB:")
