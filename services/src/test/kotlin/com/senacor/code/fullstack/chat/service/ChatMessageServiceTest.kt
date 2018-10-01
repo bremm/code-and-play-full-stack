@@ -5,7 +5,6 @@ import com.senacor.code.fullstack.chat.repository.ChatMessageRepository
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import io.mockk.verifySequence
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -23,7 +22,7 @@ class ChatMessageServiceTest {
         val expectedList = listOf<ChatMessage>(ChatMessage("dev", "s@t.de", "Hello"),
                 ChatMessage("dev", "s@t.de", "World!"))
 
-        every { chatMessageRepository.findByChannelIdOrderByCreationTimestampAsc("dev") } returns expectedList
+        every { chatMessageRepository.findByChannelIdOrderByCreationTimestampDesc("dev") } returns expectedList
 
         val result = chatMessageService.loadChatMessages("dev")
 

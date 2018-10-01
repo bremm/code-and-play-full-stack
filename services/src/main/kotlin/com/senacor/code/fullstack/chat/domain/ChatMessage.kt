@@ -6,7 +6,7 @@ import java.time.Instant
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotNull
 
-class ChatMessage(var channelId: String, @NotNull @Email var sender: String, @NotNull @Length(min = 3, max = 140) var message: String) {
+class ChatMessage(var channelId: String?, @NotNull @Email var sender: String, @NotNull @Length(min = 3, max = 140) var message: String) {
     constructor() : this("","","")
 
     var id: String? = null
@@ -34,7 +34,7 @@ class ChatMessage(var channelId: String, @NotNull @Email var sender: String, @No
         var result = sender.hashCode()
         result = 31 * result + message.hashCode()
         result = 31 * result + id!!.hashCode()
-        result = 31 * result + channelId.hashCode()
+        result = 31 * result + channelId!!.hashCode()
         return result
     }
 
