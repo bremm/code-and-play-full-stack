@@ -1,6 +1,7 @@
 package com.senacor.code.fullstack.chat.domain
 
 import org.hibernate.validator.constraints.Length
+import org.springframework.data.annotation.Id
 import java.time.Instant
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotNull
@@ -8,7 +9,7 @@ import javax.validation.constraints.NotNull
 class ChatMessage(var channelId: String, @NotNull @Email var sender: String, @NotNull @Length(min = 3, max = 140) var message: String) {
     constructor() : this("","","")
 
-    var id: String = ""
+    var id: String? = null
     var creationTimestamp: Instant = Instant.now()
 
     init {
@@ -32,7 +33,7 @@ class ChatMessage(var channelId: String, @NotNull @Email var sender: String, @No
     override fun hashCode(): Int {
         var result = sender.hashCode()
         result = 31 * result + message.hashCode()
-        result = 31 * result + id.hashCode()
+        result = 31 * result + id!!.hashCode()
         result = 31 * result + channelId.hashCode()
         return result
     }
