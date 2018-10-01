@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.util.UriComponentsBuilder
+import javax.validation.Valid
 
 @RestController
 @RequestMapping(ChatMessageController.CHAT_MESSAGES_PATH)
@@ -18,7 +19,7 @@ class ChatMessageController(@Autowired private var messageService: ChatMessageSe
     fun loadChatMessages(@PathVariable("channel") channel: String) = messageService.loadChatMessages(channel)
 
     @PostMapping
-    fun newChatMessages(@PathVariable("channel") channel: String, @RequestBody chatMessage: ChatMessage): ResponseEntity<Void> {
+    fun newChatMessages(@PathVariable("channel") channel: String, @Valid @RequestBody chatMessage: ChatMessage): ResponseEntity<Void> {
         val newChatMessage = messageService.saveChatMessage(channel, chatMessage.sender, chatMessage.message)
 
         val location = UriComponentsBuilder.newInstance().path(CHAT_MESSAGES_PATH)
